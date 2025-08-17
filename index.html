@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极简引导页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #000000;
+            padding: 30px;
+        }
+        
+        h1 {
+            font-weight: 300;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .divider {
+            height: 1px;
+            background: repeating-linear-gradient(to right, 
+                #000000, #000000 3px, transparent 3px, transparent 6px);
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: "";
+            position: absolute;
+            top: -5px;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #000000;
+            transform: rotate(45deg);
+            background: white;
+        }
+        
+        .divider::before {
+            left: -5px;
+        }
+        
+        .divider::after {
+            right: -5px;
+        }
+        
+        button {
+            background-color: #ffffff;
+            color: #000000;
+            border: 1px solid #000000;
+            padding: 15px 0;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            border-radius: 0;
+        }
+        
+        button:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        .description {
+            font-size: 14px;
+            color: #555555;
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .back-button {
+            margin-top: 20px;
+            border: none;
+            background: none;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 14px;
+            color: #000000;
+            text-align: center;
+        }
+        
+        .back-button:hover {
+            background-color: transparent;
+            color: #555555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 首页 -->
+        <div class="page active" id="home">
+            <h1>欢迎来到极简世界</h1>
+            <div class="buttons">
+                <div class="option-group">
+                    <button onclick="showPage('page1')">选项一</button>
+                    <div class="description">
+                        这是第一个选项的详细介绍文本，可以在这里描述该选项的功能和特点。
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="option-group">
+                    <button onclick="showPage('page2')">选项二</button>
+                    <div class="description">
+                        这是第二个选项的详细介绍文本，可以在这里描述该选项的功能和特点。
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="option-group">
+                    <button onclick="showPage('page3')">选项三</button>
+                    <div class="description">
+                        这是新增的第三个选项的详细介绍文本，可以在这里描述该选项的功能和特点。
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 页面一 -->
+        <div class="page" id="page1">
+            <h1>这是第一个选项</h1>
+            <div class="buttons">
+                <button onclick="window.location.href='https://example.com/page1'">前往网站一</button>
+                <button class="back-button" onclick="showPage('home')">返回</button>
+            </div>
+        </div>
+        
+        <!-- 页面二 -->
+        <div class="page" id="page2">
+            <h1>这是第二个选项</h1>
+            <div class="buttons">
+                <button onclick="window.location.href='https://example.com/page2'">前往网站二</button>
+                <button class="back-button" onclick="showPage('home')">返回</button>
+            </div>
+        </div>
+        
+        <!-- 页面三 -->
+        <div class="page" id="page3">
+            <h1>这是第三个选项</h1>
+            <div class="buttons">
+                <button onclick="window.location.href='https://example.com/page3'">前往网站三</button>
+                <button class="back-button" onclick="showPage('home')">返回</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // 隐藏所有页面
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // 显示选中的页面
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
